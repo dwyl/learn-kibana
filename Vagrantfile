@@ -1,31 +1,30 @@
 # detailed instructions for installing
 $script = <<SCRIPT
 
+# Because this is an *ISOLATED* VM its "okay" to "sudo"
 sudo -i
-# add repo for Java 8
-add-apt-repository -y ppa:webupd8team/java
-# update ubuntu (security etc.)
-apt-get update
+# Update will install any security patches
+apt-get update -y
+# see: https://gist.github.com/wingdspur/2026107
+apt-get install openjdk-7-jre-headless -y
 
-#in stall Java 8
-apt-get -y install oracle-java8-installer
+### Check elastic.co/downloads/elasticsearch for latest version of ElasticSearch and replace wget link below
+wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.7.2.deb
+dpkg -i elasticsearch-1.7.2.deb
 
-### Check http://www.elasticsearch.org/download/ for latest version of ElasticSearch and replace wget link below
-wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
+curl -L http://github.com/elasticsearch/elasticsearch-servicewrapper/tarball/master | tar -xz
+mkdir -p /usr/local/share/elasticsearch/bin/
+mv *servicewrapper*/service /usr/local/share/elasticsearch/bin/
+rm -Rf *servicewrapper*
 
-# wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.6.0.deb
-echo 'deb http://packages.elasticsearch.org/elasticsearch/1.7.2/debian stable main' | sudo tee /etc/apt/sources.list.d/elasticsearch.list
+# create a shortcut ("symbolic link") to the elasticsearch searvice
+/usr/local/share/elasticsearch/bin/service/elasticsearch install
+ln -s `readlink -f /usr/local/share/elasticsearch/bin/service/elasticsearch` /usr/local/bin/rcelasticsearch
+
+# start, then wait 10 seconds, then use curl to check its is working as expected:
+service elasticsearch start && sleep 10 && curl http://localhost:9200
 
 
-# curl -L http://github.com/elasticsearch/elasticsearch-servicewrapper/tarball/master | tar -xz
-# sudo mkdir -p /usr/local/share/elasticsearch/bin/
-# sudo mv *servicewrapper*/service /usr/local/share/elasticsearch/bin/
-# rm -Rf *servicewrapper*
-#
-# sudo /usr/local/share/elasticsearch/bin/service/elasticsearch install
-# sudo ln -s `readlink -f /usr/local/share/elasticsearch/bin/service/elasticsearch` /usr/local/bin/rcelasticsearch
-
-# curl http://localhost:9200
 
 SCRIPT
 
