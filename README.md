@@ -13,7 +13,9 @@ In the next 30 mins you will learn how use Kibana to visualize your data and unl
 ## Why?
 
 Having data and not *analysing* it for *insights* is like
-paying for a *gym* membership and not using it. The *potential* is locked away while you sit on the couch eating cookies & crisps.
+paying for a *gym* membership and not using it.
+The *potential* is locked away while you sit on the couch
+eating cookies and crisps and drinking cola...
 
 Getting *insights* from *data* is the difference between
 success and mediocirty.
@@ -21,6 +23,12 @@ success and mediocirty.
 
 Even the smallest amount of data can yield insights
 when displayed visually; you don't *need* to have "*Big Data*" ...
+
+## What?
+
+I ***highly recommend*** watching the "***What’s New in Kibana 4***" video
+on the elastic website: https://www.elastic.co/webinars/whats-new-in-kibana-4
+(*tip: use a fake email to register to avoid spam!*)
 
 ## How?
 
