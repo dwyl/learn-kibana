@@ -28,6 +28,30 @@ By the end of this tutorial you will have something resembling:
 
 ![kibana-4-screenshot](https://cloud.githubusercontent.com/assets/194400/10303313/c27c089c-6c0a-11e5-92b9-c9b702b1ed39.png)
 
+### Installation
+
+There are a few tutorials for how to intall ElasticSearch and Kibana
+floating around the Internet.
+
+> We recommend you use [***Vagrant***](https://github.com/dwyl/learn-vagrant)
+in which case you can run:
+
+```sh
+git clone https://github.com/nelsonic/learn-kibana.git
+cd learn-kibana
+vagrant up
+```
+That's *it*! After a few minutes you will have a working Kibana instance!
+access your Kibana by visiting: http://localhost:5601/ in your browser.
+
+You should *epect* to see something like this:
+
+![kibana running on localhost](https://cloud.githubusercontent.com/assets/194400/10338354/822377dc-6cfd-11e5-8dce-2e3ed7d8f749.png)
+
+It will automatically show the setting page because it has not been configured
+to show any data... (*we'll do that next!*)
+
+
 
 ## Background Reading
 

@@ -25,12 +25,15 @@ ln -s `readlink -f /usr/local/share/elasticsearch/bin/service/elasticsearch` /us
 service elasticsearch start && sleep 7 && curl http://localhost:9200
 
 # Now the Fun Part!
-wget https://download.elastic.co/kibana/kibana/kibana-4.1.2-linux-x64.tar.gz \
+wget https://download.elastic.co/kibana/kibana/kibana-4.1.2-linux-x64.tar.gz
 gunzip kibana-4.1.2-linux-x64.tar.gz
 tar -xvf kibana-4.1.2-linux-x64.tar
 
 # update the configuration file:
-vim kibana-4.1.2-linux-x64/config/kibana.yml
+# vim kibana-4.1.2-linux-x64/config/kibana.yml
+rm kibana-4.1.2-linux-x64/config/kibana.yml
+# see: https://github.com/nelsonic/learn-kibana/blob/master/kibana.yml
+wget -O kibana-4.1.2-linux-x64/config/kibana.yml http://git.io/vcpyt
 
 # create a new folder to store the kibana files:
 mkdir -p /opt/kibana
@@ -43,7 +46,7 @@ cd /etc/init.d/
 wget https://gist.githubusercontent.com/thisismitch/8b15ac909aed214ad04a/raw/bce61d85643c2dcdfbc2728c55a41dab444dca20/kibana4
 sudo chmod +x /etc/init.d/kibana4
 sudo update-rc.d kibana4 defaults 96 9
-sudo service kibana4 start
+sudo service kibana4 start && sleep 7 && curl http://localhost:5601
 
 SCRIPT
 
