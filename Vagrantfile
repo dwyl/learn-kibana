@@ -21,10 +21,29 @@ rm -Rf *servicewrapper*
 /usr/local/share/elasticsearch/bin/service/elasticsearch install
 ln -s `readlink -f /usr/local/share/elasticsearch/bin/service/elasticsearch` /usr/local/bin/rcelasticsearch
 
-# start, then wait 10 seconds, then use curl to check its is working as expected:
-service elasticsearch start && sleep 10 && curl http://localhost:9200
+# start, then wait 7 seconds (while it starts), then curl to check its working:
+service elasticsearch start && sleep 7 && curl http://localhost:9200
 
+# Now the Fun Part!
+wget https://download.elastic.co/kibana/kibana/kibana-4.1.2-linux-x64.tar.gz \
+gunzip kibana-4.1.2-linux-x64.tar.gz
+tar -xvf kibana-4.1.2-linux-x64.tar
 
+# update the configuration file:
+vim kibana-4.1.2-linux-x64/config/kibana.yml
+
+# create a new folder to store the kibana files:
+mkdir -p /opt/kibana
+
+# copy all the files to the new directory we just created:
+cp -Rrvf kibana-4.1.2-linux-x64/* /opt/kibana/
+rm kibana-4.1.2-linux-x64.tar
+# Download init.d script for kibana service.
+cd /etc/init.d/
+wget https://gist.githubusercontent.com/thisismitch/8b15ac909aed214ad04a/raw/bce61d85643c2dcdfbc2728c55a41dab444dca20/kibana4
+sudo chmod +x /etc/init.d/kibana4
+sudo update-rc.d kibana4 defaults 96 9
+sudo service kibana4 start
 
 SCRIPT
 
@@ -35,6 +54,7 @@ Vagrant.configure("2") do |config|
   config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
 
   config.vm.network :forwarded_port, guest: 3000, host: 3000
+  config.vm.network :forwarded_port, guest: 5601, host: 5601
   config.vm.network :forwarded_port, guest: 9200, host: 9200
   config.vm.network :forwarded_port, guest: 9300, host: 9300
   # Create a private network, which allows host-only access to the machine
