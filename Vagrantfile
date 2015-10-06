@@ -2,35 +2,28 @@
 $script = <<SCRIPT
 
 sudo -i
-
+# add repo for Java 8
+add-apt-repository -y ppa:webupd8team/java
 # update ubuntu (security etc.)
 apt-get update
 
-apt-get -y install g++ git git-core nodejs
-
-# nodejs
-apt-get -y install g++ git git-core nodejs npm
-# use https://github.com/visionmedia/n to get latest node+npm
-npm install n -g
-n stable
-node -v
-npm install nodemon -g
-
-# see: https://gist.github.com/wingdspur/2026107
-sudo apt-get install openjdk-7-jre-headless -y
+#in stall Java 8
+apt-get -y install oracle-java8-installer
 
 ### Check http://www.elasticsearch.org/download/ for latest version of ElasticSearch and replace wget link below
+wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
 
-wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.6.0.deb
-sudo dpkg -i elasticsearch-1.6.0.deb
+# wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.6.0.deb
+echo 'deb http://packages.elasticsearch.org/elasticsearch/1.7.2/debian stable main' | sudo tee /etc/apt/sources.list.d/elasticsearch.list
 
-curl -L http://github.com/elasticsearch/elasticsearch-servicewrapper/tarball/master | tar -xz
-sudo mkdir -p /usr/local/share/elasticsearch/bin/
-sudo mv *servicewrapper*/service /usr/local/share/elasticsearch/bin/
-rm -Rf *servicewrapper*
 
-sudo /usr/local/share/elasticsearch/bin/service/elasticsearch install
-sudo ln -s `readlink -f /usr/local/share/elasticsearch/bin/service/elasticsearch` /usr/local/bin/rcelasticsearch
+# curl -L http://github.com/elasticsearch/elasticsearch-servicewrapper/tarball/master | tar -xz
+# sudo mkdir -p /usr/local/share/elasticsearch/bin/
+# sudo mv *servicewrapper*/service /usr/local/share/elasticsearch/bin/
+# rm -Rf *servicewrapper*
+#
+# sudo /usr/local/share/elasticsearch/bin/service/elasticsearch install
+# sudo ln -s `readlink -f /usr/local/share/elasticsearch/bin/service/elasticsearch` /usr/local/bin/rcelasticsearch
 
 # curl http://localhost:9200
 

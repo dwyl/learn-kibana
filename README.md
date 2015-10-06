@@ -1,5 +1,7 @@
 # learn *kibana*
 
+![kibana-logo](https://cloud.githubusercontent.com/assets/194400/10302959/2fb98d1a-6c08-11e5-9a64-69594fff14da.png)
+
 [**Kibana**](https://www.elastic.co/products/kibana) is ***awesome***!
 If you don't *agree*, we *can't* be friends anymore.
 Sorry.  
@@ -13,13 +15,18 @@ In the next 30 mins you will learn how use Kibana to visualize your data and unl
 Having data and not *analysing* it for *insights* is like
 paying for a *gym* membership and not using it. The *potential* is locked away while you sit on the couch eating cookies & crisps.
 
-
-
 Getting *insights* from *data* is the difference between
+success and mediocirty.
 
 
 Even the smallest amount of data can yield insights
 when displayed visually; you don't *need* to have "*Big Data*" ...
+
+## How?
+
+By the end of this tutorial you will have something resembling:
+
+![kibana-4-screenshot](https://cloud.githubusercontent.com/assets/194400/10303313/c27c089c-6c0a-11e5-92b9-c9b702b1ed39.png)
 
 
 ## Background Reading
