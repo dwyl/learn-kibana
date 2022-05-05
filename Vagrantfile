@@ -12,7 +12,7 @@ apt-get install openjdk-7-jre-headless -y
 wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.7.2.deb
 dpkg -i elasticsearch-1.7.2.deb
 
-curl -L http://github.com/elasticsearch/elasticsearch-servicewrapper/tarball/master | tar -xz
+curl -L https://github.com/elasticsearch/elasticsearch-servicewrapper/tarball/master | tar -xz
 mkdir -p /usr/local/share/elasticsearch/bin/
 mv *servicewrapper*/service /usr/local/share/elasticsearch/bin/
 rm -Rf *servicewrapper*
@@ -33,7 +33,7 @@ tar -xvf kibana-4.1.2-linux-x64.tar
 # vim kibana-4.1.2-linux-x64/config/kibana.yml
 rm kibana-4.1.2-linux-x64/config/kibana.yml
 # see: https://github.com/nelsonic/learn-kibana/blob/master/kibana.yml
-wget -O kibana-4.1.2-linux-x64/config/kibana.yml http://git.io/vcpyt
+wget -O kibana-4.1.2-linux-x64/config/kibana.yml https://git.io/vcpyt
 
 # create a new folder to store the kibana files:
 mkdir -p /opt/kibana

@@ -63,6 +63,6 @@ to show any data... (*we'll do that next!*)
 
 ## Background Reading
 
-+ install (*Just*) Elastic + Kibana on Linux: http://www.unixmen.com/install-kibana-ubuntu-14-04/
++ install (*Just*) Elastic + Kibana on Linux: https://www.unixmen.com/install-kibana-ubuntu-14-04/
 + How to install Logstash + Kibana 4 on Digital Ocean:
 https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-4-on-ubuntu-14-04
